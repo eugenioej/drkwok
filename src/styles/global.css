@@ -140,6 +140,28 @@ img {
   }
 }
 
+@keyframes review-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.review-marquee {
+  display: flex;
+  width: max-content;
+  animation: review-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-marquee {
+    animation-play-state: paused;
+  }
+}
+
 @keyframes soft-float {
   0%,
   100% {

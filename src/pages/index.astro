@@ -514,14 +514,16 @@ const faqs = [
         </div>
       </div>
 
-      <div class="relative left-1/2 mt-12 w-screen -translate-x-1/2">
+      <div class="relative left-1/2 mt-12 w-screen -translate-x-1/2 overflow-hidden">
         <div
-          class="scrollbar-none flex gap-4 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8"
-          data-review-track
+          class="review-marquee gap-4 pb-4"
           aria-label="Positive Google reviews"
         >
-          {reviews.map((review) => (
-            <article class="w-[21.5rem] shrink-0 rounded-[8px] border border-ink/10 bg-cream p-6 sm:w-[24rem] lg:w-[26rem]" data-reveal>
+          {[...reviews, ...reviews].map((review, i) => (
+            <article
+              class="w-[21.5rem] shrink-0 rounded-[8px] border border-ink/10 bg-cream p-6 sm:w-[24rem] lg:w-[26rem]"
+              aria-hidden={i >= reviews.length ? "true" : undefined}
+            >
               <div class="flex gap-1 text-gold" aria-label="Five stars">
                 {[1, 2, 3, 4, 5].map(() => <Star size={15} fill="currentColor" aria-hidden="true" />)}
               </div>
@@ -649,7 +651,6 @@ const faqs = [
 
   <script is:inline>
     const revealItems = document.querySelectorAll('[data-reveal]');
-    const reviewTrack = document.querySelector('[data-review-track]');
 
     if (revealItems.length && 'IntersectionObserver' in window) {
       const revealObserver = new IntersectionObserver(
@@ -669,33 +670,6 @@ const faqs = [
       revealItems.forEach((item) => revealObserver.observe(item));
     } else {
       revealItems.forEach((item) => item.classList.add('is-visible'));
-    }
-
-    if (reviewTrack) {
-      let frameId;
-      let lastTime = 0;
-      const speed = 0.035;
-
-      const tick = (time) => {
-        if (!lastTime) lastTime = time;
-        const delta = time - lastTime;
-        lastTime = time;
-
-        const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
-        if (reviewTrack.scrollLeft >= maxScroll - 1) {
-          reviewTrack.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          reviewTrack.scrollLeft += delta * speed;
-        }
-
-        frameId = window.requestAnimationFrame(tick);
-      };
-
-      frameId = window.requestAnimationFrame(tick);
-
-      window.addEventListener('beforeunload', () => {
-        if (frameId) window.cancelAnimationFrame(frameId);
-      });
     }
   </script>
 </BaseLayout>
