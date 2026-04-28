@@ -1,0 +1,697 @@
+---
+import {
+  ArrowRight,
+  CalendarDays,
+  CircleCheckBig,
+  ClipboardCheck,
+  Clock3,
+  HeartHandshake,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  ShieldCheck,
+  Smile,
+  Sparkles,
+  Star,
+  Stethoscope,
+} from '@lucide/astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const navItems = [
+  { label: 'Care', href: '#care' },
+  { label: 'Meet Dr. Kwok', href: '#doctor' },
+  { label: 'Services', href: '#services' },
+  { label: 'First Visit', href: '#visit' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const careItems = [
+  {
+    title: 'Comfort First',
+    body: 'A calm, attentive appointment flow for patients who want dentistry to feel less clinical and more human.',
+    icon: HeartHandshake,
+  },
+  {
+    title: 'Aesthetic Detail',
+    body: 'Smile work is planned with function, facial balance, shade, and long-term confidence in mind.',
+    icon: Sparkles,
+  },
+  {
+    title: 'Reliable Dentistry',
+    body: 'Preventive, restorative, and emergency care built around durable results and honest recommendations.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Efficient Visits',
+    body: 'Same-day appointments are available when possible, with a team that respects your schedule.',
+    icon: CalendarDays,
+  },
+];
+
+const services = [
+  {
+    title: 'Cosmetic Dentistry',
+    body: 'Whitening, veneers, smile makeovers, and esthetic refinements designed to look natural.',
+    image: '/images/cosmetic.webp',
+  },
+  {
+    title: 'Dentures and Implants',
+    body: 'Replacement options for missing teeth, including implant-supported solutions and custom dentures.',
+    image: '/images/implants.webp',
+  },
+  {
+    title: 'Restorative Care',
+    body: 'Tooth-colored fillings, crowns, bridges, and repair-focused dentistry for healthier function.',
+    image: '/images/restorative.webp',
+  },
+  {
+    title: 'Preventive Dentistry',
+    body: 'Cleanings, exams, digital X-rays, oral cancer screenings, and personalized home-care guidance.',
+    image: '/images/preventive.webp',
+    icon: ClipboardCheck,
+  },
+  {
+    title: 'Emergency Dentistry',
+    body: 'Prompt help for tooth pain, broken teeth, swelling, lost crowns, and urgent dental concerns.',
+    image: '/images/emergency.webp',
+    icon: Stethoscope,
+  },
+  {
+    title: 'Clear Aligners',
+    body: 'Discreet tooth movement planning for patients who want a straighter smile without braces.',
+    image: '/images/clear-aligners.webp',
+    icon: Smile,
+  },
+];
+
+const reviews = [
+  {
+    name: 'Justin Sama',
+    text: 'I had such a wonderful experience at Riverside Smiles. Even though they were busy, they got me in a timely manner. The staff was very attentive and patient with me. Dr. Chokshi was awesome.',
+  },
+  {
+    name: 'Gwen Nicholson',
+    text: 'I have been going to this dentist office for many years and Dr. Chokshi is a great dentist along with a great personality. I am very happy with the care I have received here.',
+  },
+  {
+    name: 'Gail Findlay',
+    text: 'I have been coming to this practice since 1995. Dr. Chokski is very thorough and easy to talk with. I am so thankful to have a good dentist here.',
+  },
+  {
+    name: 'Libby West',
+    text: 'While on vacation I had a dental emergency and this office was great. The staff was wonderful and Dr. Ridgeway took great care of my tooth so I could enjoy the rest of my trip.',
+  },
+  {
+    name: 'Joanne Faddis',
+    text: 'I am totally terrified of dentists and never leave reviews, but my experience was so good that I was compelled to speak up. The entire staff was wonderful and Dr. Ridgeway exceeded all my expectations.',
+  },
+  {
+    name: 'Bree Erika Brock',
+    text: 'This office is wonderful. The dentist is so sweet and compassionate and her staff is very friendly and professional. Highly recommended.',
+  },
+  {
+    name: 'Kristi Curtis',
+    text: 'Super sweet staff is the shining moment of this office. It feels genuinely honest, open, and concerned about you as the patient.',
+  },
+];
+
+const hours = [
+  ['Monday', '8:00 AM - 5:00 PM'],
+  ['Tuesday', '8:00 AM - 5:00 PM'],
+  ['Wednesday', '8:00 AM - 5:00 PM'],
+  ['Thursday', '8:00 AM - 5:00 PM'],
+  ['Friday', 'Closed'],
+  ['Saturday', 'Closed'],
+  ['Sunday', 'Closed'],
+];
+
+const faqs = [
+  {
+    question: 'Do you welcome new patients?',
+    answer:
+      'Yes. Riverside Smiles welcomes new patients who are looking for a dental office that combines clear communication, gentle care, and thoughtful treatment planning.',
+  },
+  {
+    question: 'What should I expect at my first appointment?',
+    answer:
+      'Your first visit includes time to talk through your concerns, goals, and dental history before treatment recommendations are made. The team focuses on helping you feel informed and comfortable from the start.',
+  },
+  {
+    question: 'Do you offer cosmetic and restorative dentistry?',
+    answer:
+      'Yes. The practice offers cosmetic, preventive, and restorative care, including whitening, smile-focused treatment, fillings, crowns, and options for replacing missing teeth.',
+  },
+  {
+    question: 'Can I call if I am having a dental emergency?',
+    answer:
+      'Yes. If you are dealing with pain, a broken tooth, swelling, or another urgent issue, call the office and the team will help guide the next steps as quickly as possible.',
+  },
+  {
+    question: 'What if I feel nervous about visiting the dentist?',
+    answer:
+      'That is very common, and the office is designed with comfort in mind. Patients are encouraged to speak openly about anxiety so the team can help make the experience feel calmer and more manageable.',
+  },
+  {
+    question: 'How do I schedule an appointment?',
+    answer:
+      'You can call the office directly or use the contact information on the page to get started. The team will help you find a convenient time for your visit.',
+  },
+];
+---
+
+<BaseLayout
+  title="Riverside Smiles | North Port Dentist"
+  description="Modern, relationship-centered dental care with Dr. Ann Kwok and the Riverside Smiles team in North Port, Florida."
+>
+  <header class="sticky top-0 z-50 border-b border-ink/10 bg-white">
+    <div class="border-b border-ink/10 bg-teal text-white">
+      <div class="container-site flex flex-col gap-2 py-2 text-sm font-semibold sm:flex-row sm:items-center sm:justify-between">
+        <a class="inline-flex items-center gap-2" href="tel:+19414231777" aria-label="Call Riverside Smiles">
+          <Phone size={15} aria-hidden="true" />
+          (941) 423-1777
+        </a>
+        <a
+          class="inline-flex items-center gap-2"
+          href="https://maps.google.com/?q=14884+Tamiami+Trail+North+Port+FL+34287"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <MapPin size={15} aria-hidden="true" />
+          14884 Tamiami Trail, North Port, FL
+        </a>
+      </div>
+    </div>
+
+    <div class="container-site flex min-h-20 items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-3" aria-label="Riverside Smiles home">
+        <img class="h-14 w-auto" src="/images/logonew.png" alt="Riverside Smiles" />
+      </a>
+
+      <nav class="hidden items-center gap-7 text-sm font-bold text-ink/78 lg:flex" aria-label="Primary navigation">
+        {navItems.map((item) => <a class="transition hover:text-teal" href={item.href}>{item.label}</a>)}
+      </nav>
+
+      <div class="hidden items-center gap-3 lg:flex">
+        <a class="button-ghost" href="tel:+19414231777">
+          <Phone size={18} aria-hidden="true" />
+          Call
+        </a>
+        <a class="button-primary" href="#contact">
+          <CalendarDays size={18} aria-hidden="true" />
+          Request Visit
+        </a>
+      </div>
+
+      <details class="relative lg:hidden">
+        <summary class="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full border border-ink/15 bg-white">
+          <Menu size={22} aria-label="Open menu" />
+        </summary>
+        <div class="absolute right-0 top-14 w-72 rounded-[8px] border border-ink/10 bg-white p-3 shadow-2xl">
+          <nav class="grid gap-1 text-sm font-bold" aria-label="Mobile navigation">
+            {navItems.map((item) => <a class="rounded-[8px] px-3 py-3 hover:bg-cream" href={item.href}>{item.label}</a>)}
+            <a class="button-primary mt-2" href="#contact">
+              <CalendarDays size={18} aria-hidden="true" />
+              Request Visit
+            </a>
+          </nav>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="relative overflow-hidden border-b border-ink/10">
+      <div class="container-site grid min-h-[calc(100vh-152px)] items-center gap-10 py-10 lg:grid-cols-[0.9fr_1.1fr] lg:py-16">
+        <div class="relative z-10 max-w-2xl">
+          <p class="eyebrow mb-5 load-in" style="--delay: 60ms;">North Port family and cosmetic dentist</p>
+          <h1 class="display load-in text-balance text-6xl text-ink sm:text-7xl lg:text-8xl" style="--delay: 140ms;">
+            Riverside Smiles
+          </h1>
+          <p class="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted sm:text-xl load-in" style="--delay: 240ms;">
+            Honest, relationship-centered dentistry with Dr. Ann Kwok and a team that makes care feel calm,
+            clear, and beautifully personal.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row load-in" style="--delay: 340ms;">
+            <a class="button-primary" href="#contact">
+              <CalendarDays size={19} aria-hidden="true" />
+              Request an Appointment
+            </a>
+            <a class="button-secondary" href="#services">
+              Explore Services
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+
+          <div class="mt-10 grid gap-3 sm:grid-cols-3 load-in" style="--delay: 430ms;">
+            <div class="rounded-[8px] border border-ink/10 bg-white/76 p-4">
+              <p class="text-2xl font-extrabold text-teal">110+</p>
+              <p class="mt-1 text-sm font-semibold text-muted">happy patient reviews</p>
+            </div>
+            <div class="rounded-[8px] border border-ink/10 bg-white/76 p-4">
+              <p class="text-2xl font-extrabold text-teal">Same day</p>
+              <p class="mt-1 text-sm font-semibold text-muted">appointments when available</p>
+            </div>
+            <div class="rounded-[8px] border border-ink/10 bg-white/76 p-4">
+              <p class="text-2xl font-extrabold text-teal">CARE</p>
+              <p class="mt-1 text-sm font-semibold text-muted">a patient-first philosophy</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative min-h-[520px] load-in lg:min-h-[650px]" style="--delay: 220ms;">
+          <div class="absolute inset-0 rounded-tl-[84px] rounded-tr-[16px] border border-teal/20 bg-teal"></div>
+          <img
+            class="soft-shadow float-soft absolute inset-x-5 bottom-6 h-[86%] w-[calc(100%-40px)] rounded-tl-[74px] rounded-tr-[14px] rounded-br-[10px] object-cover"
+            src="/images/hero-home_Gemini_HD_4x.webp"
+            alt="Riverside Smiles dental team"
+            width="900"
+            height="760"
+          />
+          <div class="absolute bottom-0 left-0 max-w-[18rem] rounded-[8px] bg-cream p-5 text-ink shadow-2xl load-in" style="--delay: 520ms;">
+            <div class="flex items-center gap-2 text-gold" aria-label="Five star rating">
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+              <Star size={18} fill="currentColor" />
+            </div>
+            <p class="mt-3 text-sm font-bold leading-6 text-ink">
+              Gentle visits, clear options, and a dental home built around long-term trust.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="care" class="py-20 sm:py-24">
+      <div class="container-site">
+        <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+          <div data-reveal>
+            <p class="eyebrow">The CARE philosophy</p>
+            <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">A quieter, clearer way to care for your smile.</h2>
+          </div>
+          <p class="max-w-2xl text-pretty text-lg leading-8 text-muted lg:ml-auto" data-reveal style="--reveal-delay: 80ms;">
+            Riverside Smiles blends clinical precision with the warmth of a neighborhood practice. The result is
+            dentistry that feels thoughtful, modern, and deeply personal.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            careItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <article class="rounded-[8px] border border-ink/10 bg-white p-6 soft-shadow" data-reveal>
+                  <div class="grid h-12 w-12 place-items-center rounded-full bg-sage/55 text-teal">
+                    <Icon size={24} aria-hidden="true" />
+                  </div>
+                  <h3 class="mt-6 text-xl font-extrabold">{item.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-muted">{item.body}</p>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="doctor" class="border-y border-ink/10 bg-white py-20 sm:py-24">
+      <div class="container-site grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div class="relative" data-reveal>
+          <div class="placeholder-slot absolute -left-5 top-8 hidden h-full w-full rounded-[8px] lg:block"></div>
+          <img
+            class="relative z-10 h-auto max-h-[720px] w-full rounded-[8px] bg-white object-contain soft-shadow float-soft"
+            src="/images/kwok_Gemini_HD_4x.webp"
+            alt="Dr. Ann Kwok"
+            width="700"
+            height="875"
+          />
+        </div>
+
+        <div data-reveal style="--reveal-delay: 80ms;">
+          <p class="eyebrow">Meet your dentist</p>
+          <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">Dr. Ann Kwok</h2>
+          <p class="mt-6 text-lg leading-8 text-muted">
+            Dr. Kwok and the Riverside Smiles team serve North Port with dentistry rooted in compassion,
+            education, and dependable clinical care. Patients can expect a measured conversation, thoughtful
+            treatment planning, and a team that takes time to understand what matters most to them.
+          </p>
+          <p class="mt-4 text-lg leading-8 text-muted">
+            From preventive visits to cosmetic and restorative treatment, the practice is designed for people who
+            want a confident smile and a comfortable dental relationship.
+          </p>
+
+          <div class="mt-8 grid gap-3 sm:grid-cols-2">
+            {['Patient education before treatment', 'Modern care in a friendly setting', 'Practical options for every stage', 'Warm support for anxious patients'].map((item) => (
+              <div class="flex items-start gap-3 rounded-[8px] border border-ink/10 bg-cream p-4" data-reveal>
+                <CircleCheckBig class="mt-0.5 shrink-0 text-teal" size={20} aria-hidden="true" />
+                <span class="text-sm font-bold leading-6">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-8 grid grid-cols-3 items-center gap-3 rounded-[8px] border border-ink/10 bg-paper p-4">
+            <img class="mx-auto max-h-14 w-auto object-contain" src="/images/cred-2.webp" alt="American Dental Association logo" loading="lazy" />
+            <img class="mx-auto max-h-14 w-auto object-contain" src="/images/cred-3.webp" alt="Florida Dental Association logo" loading="lazy" />
+            <img class="mx-auto max-h-14 w-auto object-contain" src="/images/cred-1.webp" alt="Dental association credential logo" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-20 sm:py-24">
+      <div class="container-site">
+        <div class="mx-auto max-w-3xl text-center" data-reveal>
+          <p class="eyebrow">Services</p>
+          <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">Care for everyday health and standout smiles.</h2>
+          <p class="mt-6 text-lg leading-8 text-muted">
+            From preventive checkups to cosmetic and restorative treatment, Riverside Smiles offers thoughtful care
+            designed around comfort, clarity, and long-term oral health.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {
+            services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article class="group overflow-hidden rounded-[8px] border border-ink/10 bg-white soft-shadow" data-reveal>
+                  {service.image ? (
+                    <img
+                      class="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                      src={service.image}
+                      alt={service.title}
+                      width="560"
+                      height="360"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="placeholder-slot grid h-56 place-items-center">
+                      {Icon && <Icon size={42} class="text-teal" aria-hidden="true" />}
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <h3 class="text-xl font-extrabold">{service.title}</h3>
+                    <p class="mt-3 text-sm leading-7 text-muted">{service.body}</p>
+                    <a class="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-teal" href="#contact">
+                      Ask about this
+                      <ArrowRight size={16} aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" class="overflow-hidden border-y border-ink/10 bg-teal text-white">
+      <div class="container-site grid gap-10 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div data-reveal>
+          <p class="eyebrow text-sage">Your first visit</p>
+          <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">Clear expectations from the first hello.</h2>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-white/78">
+            New patients are welcomed with a complete review, diagnostic records as needed, and a conversation about
+            goals, comfort, timing, and budget. The team keeps the next step plainspoken and pressure-free.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a class="button-secondary" href="tel:+19414231777">
+              <Phone size={18} aria-hidden="true" />
+              Call the Office
+            </a>
+            <a class="button-ghost bg-white/10 text-white" href="#contact">
+              Plan a Visit
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+
+        <div class="grid gap-4">
+          {[
+            ['1', 'Tell us what brings you in', 'Share your goals, symptoms, concerns, and past dental experiences.'],
+            ['2', 'Get a complete picture', 'The team gathers records and evaluates oral health with careful attention.'],
+            ['3', 'Leave with a clear plan', 'You will understand recommended next steps and available options.'],
+          ].map(([step, title, body]) => (
+            <div class="rounded-[8px] border border-white/16 bg-white/10 p-6 backdrop-blur" data-reveal>
+              <div class="flex gap-4">
+                <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-coral text-sm font-extrabold">{step}</span>
+                <div>
+                  <h3 class="text-lg font-extrabold">{title}</h3>
+                  <p class="mt-2 text-sm leading-7 text-white/74">{body}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-ink/10 bg-white">
+      <div class="container-site grid gap-0 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:py-24">
+        <div class="flex items-center pr-0 lg:pr-12" data-reveal>
+          <div class="max-w-2xl">
+            <p class="eyebrow">First visit experience</p>
+            <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">What Your First Visit Feels Like</h2>
+            <p class="mt-4 text-xl font-semibold leading-8 text-teal">
+              Care That Leaves You with Answers, Not More Questions
+            </p>
+            <p class="mt-6 text-lg leading-8 text-muted">
+              Most people expect a dental visit to feel clinical and impersonal. Ours does not start that way. You
+              begin in a room that feels more like a friend's living room than a medical office. We start by talking,
+              really talking, before you ever see the dental chair. About what has been bothering you. What you are
+              hoping to fix. What questions have been keeping you up at night. And we stay in that conversation until
+              you feel heard before we even start looking at your teeth.
+            </p>
+            <p class="mt-5 text-lg leading-8 text-muted">
+              When it is time for the exam, you are welcome to bring your headphones if that helps you relax. There
+              are blankets if you get cold and comfy pillows to make you feel right at home. And if you need a
+              moment, Dr. Ann will give it to you. When you are home that evening after a bigger procedure, you will
+              hear from Dr. Ann, just checking in.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-10 lg:mt-0" data-reveal style="--reveal-delay: 100ms;">
+          <div
+            class="float-soft min-h-[420px] rounded-[8px] border border-ink/10 bg-cover bg-center lg:min-h-[640px]"
+            style="background-image: url('/images/bg-image.webp');"
+            aria-hidden="true"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 sm:py-24">
+      <div class="container-site">
+        <div class="max-w-3xl" data-reveal>
+          <div class="flex items-center gap-3">
+            <img class="h-10 w-10" src="/images/icons/google-icon.webp" alt="Google" loading="lazy" />
+            <img class="h-5 w-auto" src="/images/icons/google-stars.webp" alt="Five star rating" loading="lazy" />
+          </div>
+          <h2 class="display mt-5 text-balance text-5xl sm:text-6xl">Local patients notice the difference.</h2>
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <div class="rounded-[8px] border border-ink/10 bg-white px-4 py-3 soft-shadow">
+              <p class="text-3xl font-extrabold text-teal">4.4</p>
+              <p class="mt-1 text-sm font-semibold text-muted">Google rating</p>
+            </div>
+            <a
+              class="inline-flex items-center gap-2 text-sm font-extrabold text-teal"
+              href="https://share.google/7VCsh7mBo3kmyTUNF"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View on Google
+              <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative left-1/2 mt-12 w-screen -translate-x-1/2">
+        <div
+          class="scrollbar-none flex gap-4 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8"
+          data-review-track
+          aria-label="Positive Google reviews"
+        >
+          {reviews.map((review) => (
+            <article class="w-[21.5rem] shrink-0 rounded-[8px] border border-ink/10 bg-cream p-6 sm:w-[24rem] lg:w-[26rem]" data-reveal>
+              <div class="flex gap-1 text-gold" aria-label="Five stars">
+                {[1, 2, 3, 4, 5].map(() => <Star size={15} fill="currentColor" aria-hidden="true" />)}
+              </div>
+              <p class="mt-5 min-h-[11rem] text-sm leading-7 text-muted">"{review.text}"</p>
+              <div class="mt-5 border-t border-ink/10 pt-4">
+                <p class="text-sm font-extrabold text-ink">{review.name}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t border-ink/10 bg-white py-20 sm:py-24">
+      <div class="container-site grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+        <div data-reveal>
+          <p class="eyebrow">Visit Riverside Smiles</p>
+          <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">Ready when your smile is.</h2>
+          <p class="mt-6 text-lg leading-8 text-muted">
+            Call, email, or stop by the North Port office to connect with a team that makes dental care feel warm,
+            clear, and easy from the very first conversation.
+          </p>
+
+          <div class="mt-8 grid gap-3">
+            <a class="flex items-start gap-4 rounded-[8px] border border-ink/10 bg-cream p-5" href="tel:+19414231777">
+              <Phone class="mt-1 shrink-0 text-teal" size={22} aria-hidden="true" />
+              <span>
+                <span class="block text-sm font-extrabold text-ink">Phone</span>
+                <span class="mt-1 block text-muted">(941) 423-1777</span>
+              </span>
+            </a>
+            <a class="flex items-start gap-4 rounded-[8px] border border-ink/10 bg-cream p-5" href="mailto:moreinfo@northportdds.com">
+              <Mail class="mt-1 shrink-0 text-teal" size={22} aria-hidden="true" />
+              <span>
+                <span class="block text-sm font-extrabold text-ink">Email</span>
+                <span class="mt-1 block text-muted">moreinfo@northportdds.com</span>
+              </span>
+            </a>
+            <a
+              class="flex items-start gap-4 rounded-[8px] border border-ink/10 bg-cream p-5"
+              href="https://maps.google.com/?q=14884+Tamiami+Trail+North+Port+FL+34287"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MapPin class="mt-1 shrink-0 text-teal" size={22} aria-hidden="true" />
+              <span>
+                <span class="block text-sm font-extrabold text-ink">Address</span>
+                <span class="mt-1 block text-muted">14884 Tamiami Trail, North Port, FL 34287</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-[8px] border border-ink/10 bg-paper p-6 soft-shadow" data-reveal style="--reveal-delay: 80ms;">
+          <div class="flex items-center gap-3">
+            <Clock3 class="text-teal" size={24} aria-hidden="true" />
+            <h3 class="text-2xl font-extrabold">Office Hours</h3>
+          </div>
+          <div class="mt-6 divide-y divide-ink/10">
+            {hours.map(([day, time]) => (
+              <div class="flex items-center justify-between gap-4 py-3 text-sm">
+                <span class="font-extrabold">{day}</span>
+                <span class="text-right font-semibold text-muted">{time}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-8 rounded-[8px] bg-teal p-6 text-white">
+            <p class="text-sm font-bold uppercase tracking-[0.12em] text-sage">Schedule your visit</p>
+            <p class="mt-3 text-2xl font-extrabold leading-8">
+              Whether you are due for a checkup or ready to talk about a specific concern, the Riverside Smiles team
+              is here to help you take the next step with confidence.
+            </p>
+            <a class="button-secondary mt-6" href="tel:+19414231777">
+              <Phone size={18} aria-hidden="true" />
+              Call to Schedule
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-ink/10 bg-paper py-20 sm:py-24">
+      <div class="container-site grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+        <div data-reveal>
+          <p class="eyebrow">FAQs</p>
+          <h2 class="display mt-4 text-balance text-5xl sm:text-6xl">Helpful answers before you visit.</h2>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-muted">
+            A few of the questions patients often ask before choosing their dental home.
+          </p>
+        </div>
+
+        <div class="grid gap-4">
+          {faqs.map((faq, index) => (
+            <details
+              class="group rounded-[8px] border border-ink/10 bg-white p-6"
+              data-reveal
+              style={`--reveal-delay: ${index * 60}ms;`}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
+                <span class="text-lg font-extrabold text-ink">{faq.question}</span>
+                <span class="text-2xl font-light leading-none text-teal transition group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-2xl pr-8 text-sm leading-7 text-muted">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-ink/10 bg-ink py-10 text-white">
+    <div class="container-site grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+      <div>
+        <img class="h-16 w-auto rounded-[8px] bg-white p-2" src="/images/logonew.png" alt="Riverside Smiles" loading="lazy" />
+        <p class="mt-4 max-w-xl text-sm leading-7 text-white/68">
+          Riverside Smiles, the North Port dental office of Dr. Ann Kwok, built for comfortable care and confident smiles.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 text-sm font-bold text-white/76">
+        {navItems.map((item) => <a class="hover:text-white" href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const reviewTrack = document.querySelector('[data-review-track]');
+
+    if (revealItems.length && 'IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.18,
+          rootMargin: '0px 0px -10% 0px',
+        }
+      );
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    }
+
+    if (reviewTrack) {
+      let frameId;
+      let lastTime = 0;
+      const speed = 0.035;
+
+      const tick = (time) => {
+        if (!lastTime) lastTime = time;
+        const delta = time - lastTime;
+        lastTime = time;
+
+        const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+        if (reviewTrack.scrollLeft >= maxScroll - 1) {
+          reviewTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          reviewTrack.scrollLeft += delta * speed;
+        }
+
+        frameId = window.requestAnimationFrame(tick);
+      };
+
+      frameId = window.requestAnimationFrame(tick);
+
+      window.addEventListener('beforeunload', () => {
+        if (frameId) window.cancelAnimationFrame(frameId);
+      });
+    }
+  </script>
+</BaseLayout>
