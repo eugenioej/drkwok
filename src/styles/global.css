@@ -10,7 +10,7 @@
   --paper: #fffdf8;
   --sage: #b8cec3;
   --sage-dark: #476b62;
-  --teal: #0e625f;
+  --teal: #1a5a87;
   --coral: #d97562;
   --gold: #d2a85f;
 }
@@ -156,8 +156,20 @@ img {
   will-change: transform;
 }
 
+.photo-strip {
+  display: flex;
+  width: max-content;
+  animation: review-marquee 70s linear infinite;
+  will-change: transform;
+}
+
+.photo-strip--reverse {
+  animation-direction: reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .review-marquee {
+  .review-marquee,
+  .photo-strip {
     animation-play-state: paused;
   }
 }
